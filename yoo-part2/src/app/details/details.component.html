@@ -1,0 +1,10 @@
+<div class="main-container">
+  <div class="top-container">
+    <img [src]="photo?.thumbnailUrl" alt="foo" class="photo-img" />
+    <div>{{ photo?.title }}</div>
+  </div>
+  <div class="details-container">
+    <img [src]="photo?.url" alt="foo" class="photo-img-large" />
+    <button (click)="handleBackClick()">Back</button>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="main-container" *ngIf="!activePhoto; else details">
+  <div *ngFor="let photo of photos">
+    <div class="list-item" (click)="setActivePhoto(photo)">
+      <img [src]="photo.thumbnailUrl" alt="foo" class="photo-img" />
+      <div>{{ photo.title }}</div>
+    </div>
+  </div>
+</div>
+
+<ng-template #details>
+  <app-details
+    [photo]="activePhoto"
+    (back)="setActivePhoto(undefined)"
+  ></app-details>
+</ng-template>
