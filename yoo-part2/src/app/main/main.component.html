@@ -1,15 +1,27 @@
-<div *ngFor="let photo of photos()">
-  <div class="image-row" (click)="setActivePhoto(photo)">
-    <!-- <img
-      [src]="photo.thumbnailUrl"
-      alt="/placeholder150.png"
-      class="photo-img"
-    /> -->
-    <app-image-wrapper
-      [src]="photo.thumbnailUrl"
-      placeholder="/placeholder150.png"
-    />
-
-    <div>{{ photo.title }}</div>
-  </div>
+<div *ngIf="isLoading; else photos">
+  <mat-spinner diameter="120"></mat-spinner>
 </div>
+
+<ng-template #photos>
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Search photos" [formControl]="filterControl" />
+  </mat-form-field>
+  <div *ngFor="let photo of displayedPhotos()">
+    <div class="image-row" (click)="setActivePhoto(photo)">
+      <!-- <img
+            [src]="photo.thumbnailUrl"
+            alt="/placeholder150.png"
+            class="photo-img"
+          /> -->
+      <app-image-wrapper
+        [src]="photo.thumbnailUrl"
+        placeholder="/placeholder150.png"
+      />
+
+      <div>{{ photo.title }}</div>
+    </div>
+  </div>
+  <div *ngIf="displayedPhotos().length === 0 && !isLoading">
+    <mat-label>No Photos found</mat-label>
+  </div>
+</ng-template>
