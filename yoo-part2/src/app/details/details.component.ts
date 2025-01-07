@@ -7,6 +7,8 @@ import {
   ActivatedRouteSnapshot,
   Router,
 } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { DETAILS_TITLE } from '../constants';
 
 @Component({
   selector: 'app-details',
@@ -21,15 +23,16 @@ export class DetailsComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private photosService: PhotosService
+    private photosService: PhotosService,
+    private titleService: Title
   ) {
     this.photo.set(this.photosService.getActivePhoto());
-
     const id = route.snapshot.params['id'];
 
-    this.photosService
-      .getPhotoById(id)
-      .subscribe((photo) => this.photo.set(photo));
+    this.photosService.getPhotoById(id).subscribe((photo) => {
+      this.titleService.setTitle(`${DETAILS_TITLE}: ${id}`);
+      this.photo.set(photo);
+    });
   }
 
   public handleBackClick() {
