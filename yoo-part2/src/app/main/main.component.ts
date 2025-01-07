@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal, WritableSignal } from '@angular/core';
 import { DetailsComponent } from '../details/details.component';
 import { CommonModule } from '@angular/common';
 import { PhotosService } from '../photos.service';
@@ -14,8 +14,8 @@ import { ImageWrapperComponent } from '../image-wrapper/image-wrapper.component'
   styleUrl: './main.component.scss',
 })
 export class MainComponent {
-  public photos: Photo[] = [];
-  public activePhoto: Photo | undefined = undefined;
+  public photos: WritableSignal<Photo[]> = signal([] as Photo[]);
+  public activePhoto: Photo = {} as Photo;
 
   constructor(private photosService: PhotosService) {
     this.getPhotos();
@@ -34,11 +34,19 @@ export class MainComponent {
       )
       .subscribe((photos) => {
         console.log('LOADED');
-        this.photos = photos;
+        this.photos.set(photos);
       });
   }
 
-  public setActivePhoto(photo: Photo | undefined) {
+  public isMainPageActive(): boolean {
+    return this.activePhoto.id === undefined;
+  }
+
+  public handleBackButtonClicked(): void {
+    this.activePhoto = {} as Photo;
+  }
+
+  public setActivePhoto(photo: Photo) {
     this.activePhoto = photo;
   }
 }

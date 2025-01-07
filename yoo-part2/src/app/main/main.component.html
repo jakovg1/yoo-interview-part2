@@ -1,16 +1,6 @@
-<div class="main-container" *ngIf="!activePhoto; else details">
-  <div *ngFor="let photo of photos">
+<div class="main-container" *ngIf="isMainPageActive(); else details">
+  <div *ngFor="let photo of photos()">
     <div class="image-row" (click)="setActivePhoto(photo)">
-      <!-- <app-image-wrapper
-        [src]="'/placeholder150.png'"
-        [placeholder]="'/placeholder150.png'"
-      >
-      </app-image-wrapper> -->
-      <!-- <img
-        [src]="photo.thumbnailUrl || '/placeholder150.png'"
-        alt="/placeholder150.png"
-        class="photo-img"
-      /> -->
       <img
         [src]="photo.thumbnailUrl"
         alt="/placeholder150.png"
@@ -24,6 +14,6 @@
 <ng-template #details>
   <app-details
     [photo]="activePhoto"
-    (back)="setActivePhoto(undefined)"
+    (backButtonClicked)="handleBackButtonClicked()"
   ></app-details>
 </ng-template>

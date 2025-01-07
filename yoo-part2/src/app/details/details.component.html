@@ -1,14 +1,14 @@
 <div class="main-container">
   <div class="image-row">
     <img
-      [src]="photo?.thumbnailUrl"
+      [src]="photo().thumbnailUrl"
       alt="/placeholder150.png"
       class="photo-img"
     />
-    <div>{{ photo?.title }}</div>
+    <div>{{ photo().title }}</div>
   </div>
   <div class="details-container">
-    <img [src]="photo?.url" alt="placeholder600.png" class="photo-img-large" />
+    <img [src]="photo().url" alt="placeholder600.png" class="photo-img-large" />
     <button mat-raised-button (click)="handleBackClick()">Back</button>
   </div>
 </div>

@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  input,
+  Input,
+  output,
+  Output,
+} from '@angular/core';
 import { Photo } from '../types';
 import { PhotosService } from '../photos.service';
 
@@ -11,14 +18,17 @@ import { PhotosService } from '../photos.service';
   styleUrl: './details.component.scss',
 })
 export class DetailsComponent {
-  @Input() photo: Photo | undefined = undefined;
-  @Output() back: EventEmitter<void> = new EventEmitter();
+  public photo = input.required<Photo>();
+  public backButtonClicked = output();
+
+  //   @Input() photo: Photo | undefined = undefined;
+  //   @Output() back: EventEmitter<void> = new EventEmitter();
 
   constructor(private photosService: PhotosService) {
     // this.photo = photosService.getPhotoById(this.photo?.id);
   }
 
   public handleBackClick() {
-    this.back.emit();
+    this.backButtonClicked.emit();
   }
 }
