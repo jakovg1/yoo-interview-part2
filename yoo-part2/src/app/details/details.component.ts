@@ -9,11 +9,12 @@ import {
 } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { DETAILS_TITLE } from '../constants';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatButtonModule],
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss',
 })
