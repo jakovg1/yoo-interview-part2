@@ -4,12 +4,12 @@ import { CommonModule } from '@angular/common';
 import { PhotosService } from '../photos.service';
 import { Photo } from '../types';
 import { map } from 'rxjs';
-import { ImageWrapperComponent } from '../image-wrapper/image-wrapper.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [DetailsComponent, CommonModule, ImageWrapperComponent],
+  imports: [DetailsComponent, CommonModule],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
 })
@@ -17,7 +17,7 @@ export class MainComponent {
   public photos: WritableSignal<Photo[]> = signal([] as Photo[]);
   public activePhoto: Photo = {} as Photo;
 
-  constructor(private photosService: PhotosService) {
+  constructor(private photosService: PhotosService, private router: Router) {
     this.getPhotos();
   }
 
@@ -47,6 +47,7 @@ export class MainComponent {
   }
 
   public setActivePhoto(photo: Photo) {
-    this.activePhoto = photo;
+    this.photosService.setActivePhoto(photo);
+    this.router.navigate(['/details', photo.id]);
   }
 }

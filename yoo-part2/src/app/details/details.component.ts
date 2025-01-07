@@ -1,14 +1,12 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  EventEmitter,
-  input,
-  Input,
-  output,
-  Output,
-} from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Photo } from '../types';
 import { PhotosService } from '../photos.service';
+import {
+  ActivatedRoute,
+  ActivatedRouteSnapshot,
+  Router,
+} from '@angular/router';
 
 @Component({
   selector: 'app-details',
@@ -18,17 +16,23 @@ import { PhotosService } from '../photos.service';
   styleUrl: './details.component.scss',
 })
 export class DetailsComponent {
-  public photo = input.required<Photo>();
-  public backButtonClicked = output();
+  public photo = signal<Photo>({} as Photo);
 
-  //   @Input() photo: Photo | undefined = undefined;
-  //   @Output() back: EventEmitter<void> = new EventEmitter();
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private photosService: PhotosService
+  ) {
+    this.photo.set(this.photosService.getActivePhoto());
 
-  constructor(private photosService: PhotosService) {
-    // this.photo = photosService.getPhotoById(this.photo?.id);
+    const id = route.snapshot.params['id'];
+
+    this.photosService
+      .getPhotoById(id)
+      .subscribe((photo) => this.photo.set(photo));
   }
 
   public handleBackClick() {
-    this.backButtonClicked.emit();
+    this.router.navigate(['']);
   }
 }

@@ -1,19 +1,10 @@
-<div class="main-container" *ngIf="isMainPageActive(); else details">
-  <div *ngFor="let photo of photos()">
-    <div class="image-row" (click)="setActivePhoto(photo)">
-      <img
-        [src]="photo.thumbnailUrl"
-        alt="/placeholder150.png"
-        class="photo-img"
-      />
-      <div>{{ photo.title }}</div>
-    </div>
+<div *ngFor="let photo of photos()">
+  <div class="image-row" (click)="setActivePhoto(photo)">
+    <img
+      [src]="photo.thumbnailUrl"
+      alt="/placeholder150.png"
+      class="photo-img"
+    />
+    <div>{{ photo.title }}</div>
   </div>
 </div>
-
-<ng-template #details>
-  <app-details
-    [photo]="activePhoto"
-    (backButtonClicked)="handleBackButtonClicked()"
-  ></app-details>
-</ng-template>

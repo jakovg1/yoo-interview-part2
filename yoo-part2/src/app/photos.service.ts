@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Photo } from './types';
 
@@ -8,6 +8,7 @@ import { Photo } from './types';
 })
 export class PhotosService {
   public url = 'https://jsonplaceholder.typicode.com/photos';
+  public activePhoto = signal<Photo>({} as Photo);
 
   constructor(private http: HttpClient) {}
 
@@ -17,5 +18,13 @@ export class PhotosService {
 
   public getPhotoById(id: number): Observable<Photo> {
     return this.http.get<Photo>(this.url + `/${id}`);
+  }
+
+  public getActivePhoto(): Photo {
+    return this.activePhoto();
+  }
+
+  public setActivePhoto(photo: Photo): void {
+    this.activePhoto.set(photo);
   }
 }
