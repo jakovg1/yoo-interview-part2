@@ -5,11 +5,12 @@ import { PhotosService } from '../photos.service';
 import { Photo } from '../types';
 import { map } from 'rxjs';
 import { Router } from '@angular/router';
+import { ImageWrapperComponent } from '../image-wrapper/image-wrapper.component';
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [DetailsComponent, CommonModule],
+  imports: [DetailsComponent, CommonModule, ImageWrapperComponent],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
 })
@@ -22,7 +23,7 @@ export class MainComponent {
   }
 
   public getPhotos() {
-    const offset = 1400;
+    const offset = 1150;
     this.photosService
       .getPhotos()
       .pipe(
@@ -33,7 +34,6 @@ export class MainComponent {
         )
       )
       .subscribe((photos) => {
-        console.log('LOADED');
         this.photos.set(photos);
       });
   }

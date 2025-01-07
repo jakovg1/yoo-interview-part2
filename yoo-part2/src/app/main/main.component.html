@@ -1,10 +1,15 @@
 <div *ngFor="let photo of photos()">
   <div class="image-row" (click)="setActivePhoto(photo)">
-    <img
+    <!-- <img
       [src]="photo.thumbnailUrl"
       alt="/placeholder150.png"
       class="photo-img"
+    /> -->
+    <app-image-wrapper
+      [src]="photo.thumbnailUrl"
+      placeholder="/placeholder150.png"
     />
+
     <div>{{ photo.title }}</div>
   </div>
 </div>

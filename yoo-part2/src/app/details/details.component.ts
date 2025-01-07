@@ -10,11 +10,12 @@ import {
 import { Title } from '@angular/platform-browser';
 import { DETAILS_TITLE } from '../constants';
 import { MatButtonModule } from '@angular/material/button';
+import { ImageWrapperComponent } from '../image-wrapper/image-wrapper.component';
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [CommonModule, MatButtonModule],
+  imports: [CommonModule, MatButtonModule, ImageWrapperComponent],
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss',
 })

@@ -1,0 +1,12 @@
+<div class="wrapper">
+  <div *ngIf="this.isLoading" class="spinner-overlay">
+    <mat-spinner diameter="60"></mat-spinner>
+  </div>
+  <img
+    [src]="displayedImage() || placeholder()"
+    (load)="onLoad()"
+    (error)="onError()"
+    alt="Image"
+    class="photo-img"
+  />
+</div>

@@ -1,12 +1,16 @@
 <div class="image-row">
-  <img
+  <!-- <img
     [src]="photo().thumbnailUrl"
     alt="/placeholder150.png"
     class="photo-img"
+  /> -->
+  <app-image-wrapper
+    [src]="photo().thumbnailUrl"
+    placeholder="/placeholder150.png"
   />
   <div>{{ photo().title }}</div>
 </div>
 <div class="details-container">
-  <img [src]="photo().url" alt="placeholder600.png" class="photo-img-large" />
+  <app-image-wrapper [src]="photo().url" placeholder="/placeholder600.png" />
   <button mat-raised-button (click)="handleBackClick()">Back</button>
 </div>
