@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+.main-container {
+  width: 40vw;
+  height: 90vh;
+  background-color: white;
+  padding: 12px;
+  overflow-x: hidden;
+  border: 1px solid #dadada;
+}
+.image-row {
+  display: flex;
+  align-items: center;
+  height: 10vh;
+  border: 1px solid #dadada;
+  margin: 0px 8px 8px 0px;
+}
+
+.photo-img {
+  height: 100%;
+  width: auto;
+  margin-right: 20px;
+}

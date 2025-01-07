@@ -1,7 +1,21 @@
 <div class="main-container" *ngIf="!activePhoto; else details">
   <div *ngFor="let photo of photos">
-    <div class="list-item" (click)="setActivePhoto(photo)">
-      <img [src]="photo.thumbnailUrl" alt="foo" class="photo-img" />
+    <div class="image-row" (click)="setActivePhoto(photo)">
+      <!-- <app-image-wrapper
+        [src]="'/placeholder150.png'"
+        [placeholder]="'/placeholder150.png'"
+      >
+      </app-image-wrapper> -->
+      <!-- <img
+        [src]="photo.thumbnailUrl || '/placeholder150.png'"
+        alt="/placeholder150.png"
+        class="photo-img"
+      /> -->
+      <img
+        [src]="photo.thumbnailUrl"
+        alt="/placeholder150.png"
+        class="photo-img"
+      />
       <div>{{ photo.title }}</div>
     </div>
   </div>

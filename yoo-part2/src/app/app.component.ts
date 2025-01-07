@@ -11,5 +11,5 @@ import { DetailsComponent } from './details/details.component';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'yoo-part2';
+  title = 'Photos';
 }
